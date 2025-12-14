@@ -1,60 +1,64 @@
-import { elGameZone, elHands, elRefreshGameButton, elResultZone, elRobot, elUser } from "./html-elements.js";
+import {
+  elRobot, elGameZone, elHands, elRefreshGameButton, elResultZone, elUser,
+} from './html-elements.js';
 
-// Robot choose
+// robot choose
+
 function robotChoose() {
-    const hands = ["rock", "paper", "scissors"];
-    const randomIndex = Math.trunc(Math.random() * hands.length);
-    return hands [randomIndex];
+  const hands = ['rock', 'paper', 'scissors'];
+  const randomIndex = Math.trunc(Math.random() * hands.length);
+  return hands[randomIndex];
 }
 
-// Change zone
-function swapZone(boolean) {
-    if (boolean) {
-        elGameZone.style.display = "none";
-        elResultZone.style.display = "flex";
-    } else {
-        elGameZone.style.display = "flex";
-        elResultZone.style.display = "none";
-    }
+// swapZone
+
+function swapZone(showResult) {
+  if (showResult) {
+    elGameZone.classList.add('hidden');
+    elResultZone.classList.remove('hidden');
+  } else {
+    elGameZone.classList.remove('hidden');
+    elResultZone.classList.add('hidden');
+  }
 }
 
-// find winner
+// Find winner
+
 function checkWinner(user, robot) {
-    if (user === robot) {
-        return "TIE";
-    } else if (user === "paper" && robot === "scissors") {
-        return "ROBOT";
-    } else if (user === "scissors" && robot === "rock") {
-        return "ROBOT";
-    } else if (user === "rock" && robot === "paper") {
-        return "ROBOT";
-    } else {
-        return "USER";
-    }
+  if(user === robot) {
+    return "TIE"
+  } else if(user === "paper" && ai === "scissors") {
+    return "ROBOT";
+  } else if (user === 'scissors' && ai === 'rock') {
+    return 'ROBOT';
+  } else if (user === 'rock' && ai === 'paper') {
+    return 'ROBOT';
+  } else {
+    return "USER"
+  }
 }
 
-// Hands
-elHands.forEach((elHands) => {
-    elHands.addEventListener("click", (evt) => {
-         swapZone(true);
 
-        const user = evt.target.alt;
-        const robot = robotChoose();
+elResultZone.classList.add('hidden');
 
-        elUser.src = evt.target.src;
-        elRobot.src = "./img/choosing.svg";      
-        
-        setTimeout(() => {
-            elRobot.src = './img/${robot}.svg';
-            const winner = checkWinner(user, robot);
-            
-            alert(winner);
-        }, 1000);
-    });
+elHands.forEach((elHand) => {
+  elHand.addEventListener('click', (evt) => {
+    swapZone(true);
+    const user = evt.target.alt;
+    const robot = robotChoose();
+
+    elUser.src = evt.target.src;
+    elRobot.src = './img/choosing.svg';
+    setTimeout(() => {
+      elRobot.src = `./img/${robot}.svg`;
+      const winner = checkWinner(user, robot)
+      console.log(winner);
+    }, 1000);
+  });
 });
 
-
 // Refresh game
-elRefreshGameButton.addEventListener("click", (evt) => {
-    swapZone(false);
+
+elRefreshGameButton.addEventListener('click', () => {
+  swapZone(false);
 });
