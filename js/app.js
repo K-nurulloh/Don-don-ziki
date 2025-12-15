@@ -10,7 +10,6 @@ function robotChoose() {
   return hands[randomIndex];
 }
 
-// swapZone
 
 function swapZone(showResult) {
   if (showResult) {
