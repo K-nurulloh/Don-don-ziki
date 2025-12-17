@@ -17,11 +17,11 @@ function modeChanger() {
     if(activeMode === "basic") {
         activeMode = "advenced"
         elAdvenced.style.display = "none"
-        elBasic.style.display = "flex"
+        elBasic.style.display = "grid"
         elModeChangerButton.innerText = "Basic"
     }else {
         activeMode = "basic"
-        elAdvenced.style.display = "flex"
+        elAdvenced.style.display = "grid"
         elBasic.style.display = "none"
         elModeChangerButton.innerText = "Advenced"
     }
