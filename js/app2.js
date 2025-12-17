@@ -1,33 +1,10 @@
-import { elAdvenced, elBasic, elScore ,  elGameZone, elHands, elModeChangerButton, elRefreshGameButton, elResultZone, elRobot, elUser } from "./html-elements.js";
-
-
-let activeMode = "basic"
-
-
-
-// robot Choose
+import {elScore ,  elGameZone, elHands, elModeChangerButton, elRefreshGameButton, elResultZone, elRobot, elUser } from "./html-elements.js";
 function robotChoose() {
-    let hands = ["rock","paper","scissors",]
+    let hands = ["rock","paper","scissors", "spock", "lizard"]
     const randomIndex = Math.trunc(Math.random() * hands.length)
     return hands[randomIndex]
 }
 
-// mod changer
-function modeChanger() {
-    if(activeMode === "basic") {
-        activeMode = "advenced"
-        elAdvenced.style.display = "none"
-        elBasic.style.display = "flex"
-        elModeChangerButton.innerText = "Basic"
-    }else {
-        activeMode = "basic"
-        elAdvenced.style.display = "flex"
-        elBasic.style.display = "none"
-        elModeChangerButton.innerText = "Advenced"
-    }
-}
-
-// change zone
 function swapZone(boolean){
     if(boolean){
         elGameZone.style.display = "none"
