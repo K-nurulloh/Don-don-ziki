@@ -100,16 +100,30 @@ elHands.forEach((elHand) => {
 })
 
 // refresh game
-elRefreshGameButton.addEventListener("click",() => {
-    swapZone(false)
-})
+elRefreshGameButton.addEventListener('click', () => {
+  swapZone(false);
+});
 
-// change score
-function changeScore() {
-    elScore.innerText = +elScore.innerText + 1   
+
+let score = localStorage.getItem('score');
+
+if (score === null) {
+  score = 0;
+  localStorage.setItem('score', score);
 }
 
-elModeChangerButton.addEventListener("click" , modeChanger)
+elScore.innerText = score;
 
+function changeScore() {
+  let score = localStorage.getItem("score");
+  score = +score + 1
+  localStorage.setItem('score', score);
+  elScore.innerText = score;
+}
 
-modeChanger()
+// Change mode
+elModeChangerButton.addEventListener('click', modeChanger);
+
+// Start
+
+modeChanger();
